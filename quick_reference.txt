@@ -1,0 +1,97 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 23 14:52:17 2017
+
+@author: Jake Meador
+"""
+
+Quick reference:
+    pyEscRo_classes:
+        Building:
+            description:
+                - Object to store path names for feature classes inside of the
+                  feature dataset corresponding to the building
+            parameters:
+                - building name
+                - geodatabase where the data is
+
+            functions:
+                create_nd():
+                    description:
+                        - creates a network dataset and builds it for the building
+                    parameters:
+                        - None
+
+        EndPoint:
+            description:
+                - Object storing some data for rooms/exits
+            parameters:
+                - Building object
+                - room/exit number
+                
+            functions:
+                isolate_entry():
+                    description:
+                        - creates new shapefile containing only the room point 
+                          for the selected room
+                    parameters:
+                        - None
+        
+        Room:
+            description:
+                - subclass of EndPoint for storing data of 1 room
+            parameters:
+                - Building object
+                - room number
+            
+            functions:
+                fetch_data():
+                    description:
+                        - populates some fields of object
+                    parameters:
+                        - None
+                
+                create_exits():
+                    description:
+                        - returns list of all Exit objects for building
+                    parameters:
+                        - None
+        
+        Exit:
+            description:
+                - subclass of EndPoint for storing data of 1 exit
+            parameters:
+                - Building object
+                - exit number
+            functions:
+                - None
+        
+        Route:
+            description:
+                - object for storing route data between 1 room and 1 exit
+            parameters:
+                - Building object
+                - Room object
+                - Exit object
+            
+            functions:
+                create_layer():
+                    description:
+                        - creates route analysis layer and populates some fields
+                          of the object
+                    parameters:
+                        - None
+                
+                save_layer():
+                    description:
+                        - defines symbology for the layer and adds it to map
+                    parameters:
+                        - group layer object
+
+    pyEscRo_main:
+        functions:
+            main():
+                description:
+                    - runs all of the functionality of the python toolbox
+                parameters:
+                    - list of arcpy.Parameter objects from .pyt file

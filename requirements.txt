@@ -1,0 +1,53 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Nov 24 17:02:07 2017
+
+@author: Jake Meador
+"""
+
+Files:
+    Feature Datasets:
+        - One feature dataset per building, and should contain all feature
+          classes for the building.
+        - File name must be the short name for the building (i.e. "LAAH" for Langford)
+        
+        Feature Classes:
+            Required:
+                - Room Points | file name: "room_points"
+                - Exit Points | file name: "exits"
+                - Aisle Lines | file name: "aisles"
+                - Stair Lines | file name: "stairs"
+            Ancillary:
+                - Room Polygons | file name: "rooms"
+                - Floor Polygons | file name: "floors"
+                - Building Polygons | file name: "building"
+                - Floor Lines (from CAD file) | file name: "floor_lines"
+                
+             ***- Network Dataset | file name: "[building short name]_ND"
+             ***- Network Dataset Junctions | file name: "[building short name]_ND_Junctions"
+             
+database structure:
+    Room Points | Exit Points
+        Fields:
+            - OBJECTID | primary key
+            - SHAPE | Point Z
+            - RoomName | string (i.e. "EXIT" for exit points)
+            - RMNumber | string (i.e. "EXIT1" for exit points; order not important, but need to be unique)
+            - Floor | integer
+        
+        Other:
+            - Need to have Z values, but not necessary to be represented in the table
+            
+    Aisle Lines | Stair Lines
+        Fields:
+            - OBJECTID | primary key
+            - Shape | Polyline Z
+            - Shape_Length | float
+            
+        Other:
+            - Need to have Z values, but not necessary to be represented in the table
+
+*** Not necessary to create, program should automatically generate
+
+Dependencies:
+    "templates" folder MUST be located in the same folder as the file geodatabase containing all of the data
